@@ -9,11 +9,13 @@
 #  \____|\__, ||_.__/  \___||_|      |_| \___| \___||_| |_|  \___/  \___/  \__,_||_|   |_| |_| \__,_||_|
 #        |___/                                                                                          
 #                                                                       
-# Script name: ctj_update_install_packages.sh
+# Script Name: ctj_update_install_packages.sh
 #
-# Author: William D. Friend Jr. (Bill)
+# Script Version: 1.0
 #
 # Date: 2023/03/04
+#
+# Author: William D. Friend Jr. (Bill)
 #
 # License: MIT
 #
@@ -32,6 +34,9 @@
 # 9. Wait for the script to complete the package installation or upgrade process.
 # 10. Review the lists of successful and failed packages and take any necessary actions.
 #
+# Version History:
+# V1.0 - Initial Release
+#
 # ******************************************************************************************************
 # ******************************************************************************************************
 # ******************************************************************************************************
@@ -40,13 +45,13 @@
 # Read the list of packages from the external file
 PACKAGES=($(<packages.txt))
 
-# Define arrays to store successful and failed package names
+# Define empty arrays to store successful and failed package names
 SUCCESS_PACKAGES=() FAILED_PACKAGES=()
 
-# Run apt-get update
+# Run apt-get update and pause script for 5 seconds
 echo "Updating package lists"; sudo apt-get update; sleep 5
 
-# Prompt the user to choose between regular or full upgrade
+# Prompt the user to choose between regular or full package upgrade
 while true; do
     clear; echo -e "\nWould you like to perform a full upgrade or a regular upgrade?\n\n1. Full upgrade (apt-get full-upgrade)\n2. Regular upgrade (apt-get upgrade)\n3. Do not upgrade\n"
     read -p "Enter your choice [1-3]: " choice
@@ -70,7 +75,9 @@ echo "Preparing to install the following packages"
 for PACKAGE in "${PACKAGES[@]}"; do
     echo " - $PACKAGE"
 done
-sleep 5
+
+# Pause script for 3 seconds
+sleep 3
 
 # Loop through each package and install it
 for PACKAGE in "${PACKAGES[@]}"; do
@@ -95,7 +102,7 @@ read -n 1 -s -r -p $'\nPress any key to continue.\n'
 # Clear Screen
 clear
 
-# Display lists of successfully installed packages
+# Informing the user that the installation process is complete
 echo -e "\nThe installation process is complete!\n"
 
 # Display list of successfully installed packages
