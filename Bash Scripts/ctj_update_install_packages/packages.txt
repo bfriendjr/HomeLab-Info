@@ -1,0 +1,14 @@
+git
+gdebi
+wget
+unrar
+unace
+unrar
+p7zip
+zip
+unzip
+p7zip-full
+p7zip-rar
+file-roller
+tor
+torbrowser-launcher
